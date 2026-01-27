@@ -1,0 +1,14 @@
+.staff-page {
+  background-color: #873e23;
+  min-height: 100vh;
+  padding: 1.5rem;
+  color: #ffffff;
+}
+
+.staff-page {
+  margin-left: 240px; /* same as sidebar width */
+  padding: 1.5rem;
+  min-height: 100vh;
+  background-color: #873e23; /* dashboard brown */
+  color: #ffffff;
+}

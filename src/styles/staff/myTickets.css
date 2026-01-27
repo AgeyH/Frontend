@@ -1,0 +1,105 @@
+.staff-page {
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.staff-page h1 {
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+.tickets-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.ticket-card {
+  display: block;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #0f172a;
+  border: 1px solid #e5e7eb;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.ticket-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.ticket-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Status styles */
+.status {
+  font-weight: 600;
+}
+
+.status.open {
+  color: #16a34a;
+}
+
+.status.in-progress {
+  color: #eab308;
+}
+
+.status.closed {
+  color: #dc2626;
+}
+
+.sla {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+.sla.ok {
+  color: #16a34a;
+}
+
+.sla.on-track {
+  color: #16a34a;
+}
+
+.sla.warning {
+  color: #e28743;
+}
+
+.sla.breached {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.escalation-badge {
+  background-color: #dc2626;
+  color: #ffffff;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  margin-left: 10px;
+}
+
+.escalate-btn {
+  margin-top: 10px;
+  background-color: #e28743;
+  color: #ffffff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.escalate-btn:hover {
+  opacity: 0.9;
+}

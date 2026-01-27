@@ -1,0 +1,6 @@
+:root {
+  --color-primary: #873e23; /* Brown */
+  --color-accent: #e28743; /* Accent (orangish-brown per spec) */
+  --color-white: #ffffff; /* White*/
+  --color-dark: #0f172a; /* Blackish */
+}

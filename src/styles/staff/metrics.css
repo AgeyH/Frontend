@@ -1,0 +1,88 @@
+.staff-metrics {
+  padding: 24px;
+  background: #f4f6f8;
+  min-height: 100vh;
+}
+
+.staff-metrics h2 {
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.metrics-subtitle {
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+/* Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Cards */
+.metric-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.metric-card h3 {
+  font-size: 1.8rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.metric-title {
+  font-weight: 600;
+  color: #374151;
+}
+
+.metric-desc {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* SLA Section */
+.sla-breakdown {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.sla-breakdown h3 {
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.sla-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sla {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sla.good {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.sla.warning {
+  background: #fff8e1;
+  color: #f57c00;
+}
+
+.sla.danger {
+  background: #fdecea;
+  color: #c62828;
+}

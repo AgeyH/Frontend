@@ -1,0 +1,55 @@
+.kb-page {
+  padding: 24px;
+  background: #f4f6f8;
+  min-height: 100vh;
+}
+
+.kb-page h2 {
+  color: #0f172a;
+}
+
+.kb-subtitle {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.kb-search {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 20px;
+}
+
+.kb-list {
+  display: grid;
+  gap: 16px;
+}
+
+.kb-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kb-card h3 {
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.kb-category {
+  font-size: 0.8rem;
+  color: #e28743;
+  font-weight: 600;
+}
+
+.kb-card p {
+  margin-top: 8px;
+  color: #374151;
+}
+
+.kb-empty {
+  color: #9ca3af;
+}
