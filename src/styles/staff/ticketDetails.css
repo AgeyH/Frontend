@@ -1,34 +1,144 @@
-.staff-page {
-  margin-left: 240px; /* same as sidebar width */
+/* Leave space for sidebar */
+.staff-page,
+.staff-dashboard,
+.ticket-details {
+  margin-left: 240px;
+}
+/* Page wrapper */
+.ticket-details {
   padding: 1.5rem;
+  background-color: #f8fafc;
   min-height: 100vh;
-  background-color: #873e23; /* dashboard brown */
-  color: #ffffff;
+  color: #0f172a;
 }
 
-.ticket-section {
+/* Page title */
+.ticket-details h1,
+.ticket-details h2 {
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+/* Ticket info container */
+.ticket-info {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
   margin-bottom: 1.5rem;
 }
 
-select,
+/* Ticket fields */
+.ticket-info p {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+/* Status badge */
+.status {
+  font-weight: 600;
+}
+
+.status.open {
+  color: #16a34a;
+}
+
+.status.in-progress {
+  color: #eab308;
+}
+
+.status.closed {
+  color: #dc2626;
+}
+
+/* SLA */
+.sla {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.sla.ok,
+.sla.on-track {
+  color: #16a34a;
+}
+
+.sla.warning {
+  color: #e28743;
+}
+
+.sla.breached {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+/* Escalation badge */
+.escalation-badge {
+  background-color: #dc2626;
+  color: #ffffff;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  margin-left: 10px;
+}
+
+/* Comments section */
+.comments-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.comments-section h3 {
+  margin-bottom: 1rem;
+}
+
+/* Individual comment */
+.comment {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.5rem 0;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.comment span {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Comment textarea */
 textarea {
   width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.4rem;
-  border-radius: 4px;
-  border: none;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.9rem;
 }
 
-textarea {
-  min-height: 120px;
-}
-
-.primary-btn {
+/* Buttons */
+button {
+  margin-top: 0.75rem;
   background-color: #e28743;
-  color: #0f172a;
+  color: #ffffff;
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Escalate button */
+.escalate-btn {
+  background-color: #dc2626;
 }

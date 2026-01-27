@@ -1,3 +1,9 @@
+/* Leave space for sidebar */
+.staff-page,
+.staff-dashboard,
+.ticket-details {
+  margin-left: 240px;
+}
 .staff-metrics {
   padding: 24px;
   background: #f4f6f8;

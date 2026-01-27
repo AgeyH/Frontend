@@ -1,3 +1,9 @@
+/* Leave space for sidebar */
+.staff-page,
+.staff-dashboard,
+.ticket-details {
+  margin-left: 240px;
+}
 .staff-page {
   background-color: #873e23;
   min-height: 100vh;
