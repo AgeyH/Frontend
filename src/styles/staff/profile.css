@@ -1,0 +1,27 @@
+.profile-card {
+  max-width: 400px;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.profile-card p {
+  margin: 0.5rem 0;
+  color: #0f172a;
+}
+
+.logout-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  opacity: 0.9;
+}

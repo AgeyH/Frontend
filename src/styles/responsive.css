@@ -1,0 +1,47 @@
+/* Tablets */
+@media (max-width: 1024px) {
+  .staff-page {
+    margin-left: 200px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .staff-page {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .staff-nav {
+    position: static;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-card {
+    font-size: 0.9rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  h1,
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .ticket-details-card p {
+    font-size: 0.85rem;
+  }
+}

@@ -1,96 +1,122 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../../styles/staff/ticketDetails.css";
-import { getRemainingTime, shouldEscalate } from "../../utils/sla";
+import { useStaff } from "../../context/StaffContext";
 
 const TicketDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { setActiveTicketId } = useStaff();
 
-  // Mock ticket
-  const ticket = {
+  const [ticket, setTicket] = useState({
     id,
     title: "Email not working",
-    category: "Email",
-    priority: "High",
-    status: "Open",
-    createdAt: "2026-01-26T08:00:00",
-    slaHours: 4,
-  };
+    status: "In Progress",
+    priority: "Normal",
+    assignedPrimary: "You",
+    assignedSecondary: null,
+    activityLog: [
+      {
+        action: "Ticket Created",
+        by: "End User",
+        comment: "Issue logged",
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  });
 
-  const [status, setStatus] = useState(ticket.status);
-  const [comments, setComments] = useState([]);
-  const [commentText, setCommentText] = useState("");
+  const [pendComment, setPendComment] = useState("");
 
-  const sla = getRemainingTime(ticket.createdAt, ticket.slaHours);
-  const escalated = shouldEscalate(ticket.createdAt, ticket.slaHours);
+  const updateStatus = (newStatus, comment) => {
+    setTicket((prev) => ({
+      ...prev,
+      status: newStatus,
+      activityLog: [
+        ...prev.activityLog,
+        {
+          action: `Status changed to ${newStatus}`,
+          by: "IT Staff",
+          comment,
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    }));
 
-  const addComment = () => {
-    if (!commentText.trim()) return;
-    setComments([
-      ...comments,
-      { text: commentText, time: new Date().toLocaleString() },
-    ]);
-    setCommentText("");
+    if (newStatus === "Pending" || newStatus === "Resolved") {
+      setActiveTicketId(null);
+      navigate("/staff/my-tickets");
+    }
   };
 
   return (
-    <div className="ticket-details">
-      <h2>Ticket #{ticket.id}</h2>
+    <div className="staff-page">
+      <h1>Ticket Details</h1>
 
-      <div className="ticket-info">
+      <div className="ticket-details-card">
+        <h3>{ticket.title}</h3>
+
         <p>
-          <strong>Title:</strong> {ticket.title}
-        </p>
-        <p>
-          <strong>Category:</strong> {ticket.category}
-        </p>
-        <p>
-          <strong>Priority:</strong> {ticket.priority}
+          <strong>Ticket Number:</strong> {ticket.id}
         </p>
 
         <p>
-          <strong>Status:</strong>
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option>Open</option>
-            <option>In Progress</option>
-            <option>Resolved</option>
-          </select>
+          <strong>Status:</strong>{" "}
+          <span className={`status ${ticket.status.toLowerCase()}`}>
+            {ticket.status}
+          </span>
         </p>
 
-        <p className={`sla ${sla.state}`}>
-          <strong>SLA:</strong> {sla.label}
+        <p>
+          <strong>Primary Staff:</strong> {ticket.assignedPrimary}
         </p>
 
-        {escalated && <span className="escalation-badge">Escalated</span>}
+        <p>
+          <strong>Secondary Staff:</strong> {ticket.assignedSecondary || "None"}
+        </p>
+
+        {/* PEND TICKET */}
+        {ticket.status === "In Progress" && (
+          <div className="pend-section">
+            <textarea
+              placeholder="Reason for pending this ticket (required)"
+              value={pendComment}
+              onChange={(e) => setPendComment(e.target.value)}
+            />
+
+            <button
+              disabled={!pendComment}
+              onClick={() => updateStatus("Pending", pendComment)}
+            >
+              Pend Ticket
+            </button>
+          </div>
+        )}
+
+        {/* RESOLVE */}
+        {ticket.status !== "Resolved" && (
+          <button
+            className="resolve-btn"
+            onClick={() => updateStatus("Resolved", "Issue resolved")}
+          >
+            Mark as Resolved
+          </button>
+        )}
       </div>
 
-      <div className="comments-section">
-        <h3>Internal Notes</h3>
+      {/* ACTIVITY LOG */}
+      <div className="activity-log">
+        <h3>Activity Log</h3>
 
-        {comments.map((c, i) => (
-          <div key={i} className="comment">
-            <p>{c.text}</p>
-            <span>{c.time}</span>
+        {ticket.activityLog.map((log, index) => (
+          <div key={index} className="log-item">
+            <p>
+              <strong>{log.action}</strong> by {log.by}
+            </p>
+            <p>{log.comment}</p>
+            <small>{new Date(log.timestamp).toLocaleString()}</small>
           </div>
         ))}
-
-        <textarea
-          placeholder="Add a comment..."
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-        />
-
-        <button onClick={addComment}>Add Comment</button>
       </div>
-
-      {!escalated && (
-        <button
-          className="escalate-btn"
-          onClick={() => alert("Ticket escalated (mock)")}
-        >
-          Escalate Ticket
-        </button>
-      )}
     </div>
   );
 };

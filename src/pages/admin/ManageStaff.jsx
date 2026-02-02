@@ -1,74 +1,91 @@
 import { useState } from "react";
-import "../../styles/admin.css";
+import "../../styles/admin/manageStaff.css";
 
 const ManageStaff = () => {
-  const [staff, setStaff] = useState([
+  const [users, setUsers] = useState([
     {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      department: "ICT",
-      status: "pending",
+      id: "U-001",
+      name: "Jane Mwangi",
+      email: "jane@company.com",
+      phone: "0712345678",
+      role: "staff",
+      status: "active",
     },
     {
-      id: 2,
-      name: "Mary Wanjiku",
-      email: "mary@example.com",
-      department: "ICT",
+      id: "U-002",
+      name: "Brian Otieno",
+      email: "brian@company.com",
+      phone: "0798123456",
+      role: "admin",
       status: "active",
     },
   ]);
 
-  const updateStatus = (id, status) => {
-    setStaff(staff.map((s) => (s.id === id ? { ...s, status } : s)));
+  const updateUser = (id, field, value) => {
+    setUsers((prev) =>
+      prev.map((u) => (u.id === id ? { ...u, [field]: value } : u)),
+    );
   };
 
   return (
     <div className="admin-page">
-      <h2>Manage IT Staff</h2>
+      <h1>Manage Users</h1>
 
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Department</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {staff.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.department}</td>
-              <td className={`status ${user.status}`}>{user.status}</td>
-              <td>
-                {user.status === "pending" && (
-                  <>
-                    <button
-                      className="approve-btn"
-                      onClick={() => updateStatus(user.id, "active")}
-                    >
-                      Approve
-                    </button>
-
-                    <button
-                      className="reject-btn"
-                      onClick={() => updateStatus(user.id, "rejected")}
-                    >
-                      Reject
-                    </button>
-                  </>
-                )}
-                {user.status !== "pending" && "—"}
-              </td>
+      <div className="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Role</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>
+                  <strong>{user.name}</strong>
+                  <br />
+                  <span className="muted">{user.id}</span>
+                </td>
+
+                <td>
+                  {user.email}
+                  <br />
+                  {user.phone}
+                </td>
+
+                <td>
+                  <select
+                    value={user.role}
+                    onChange={(e) =>
+                      updateUser(user.id, "role", e.target.value)
+                    }
+                  >
+                    <option value="staff">IT Staff</option>
+                    <option value="admin">Admin</option>
+                    <option value="director">Director</option>
+                  </select>
+                </td>
+
+                <td>
+                  <select
+                    value={user.status}
+                    onChange={(e) =>
+                      updateUser(user.id, "status", e.target.value)
+                    }
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

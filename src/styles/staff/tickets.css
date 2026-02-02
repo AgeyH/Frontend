@@ -12,3 +12,10 @@
   background-color: #873e23; /* dashboard brown */
   color: #ffffff;
 }
+
+.staff-page {
+  margin-left: 240px; /* sidebar width */
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}

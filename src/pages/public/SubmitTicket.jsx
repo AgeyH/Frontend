@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/submitTicket.css";
+import { generateTicketNumber } from "../../utils/ticketNumber";
+import { saveTicket } from "../../utils/ticketStorage";
 
 const SubmitTicket = () => {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ const SubmitTicket = () => {
     staffNumber: "",
     fullName: "",
     phone: "",
+    location: "",
     email: "",
     idNumber: "",
     category: "",
@@ -18,30 +21,65 @@ const SubmitTicket = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
+
+    setFormData((prev) => ({
+      ...prev,
       [name]: files ? files[0] : value,
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Required field validation
+    // ✅ REQUIRED FIELD VALIDATION FIRST
     if (
       !formData.staffNumber ||
       !formData.fullName ||
       !formData.phone ||
+      !formData.location ||
       !formData.description
     ) {
       alert("Please fill in all required fields.");
       return;
     }
 
-    // Later: send data to backend
-    console.log("Ticket Submitted:", formData);
+    // ✅ CREATE TICKET AFTER VALIDATION
+    const newTicket = {
+      id: generateTicketNumber(),
+      requester: {
+        staffNumber: formData.staffNumber,
+        fullName: formData.fullName,
+        phone: formData.phone,
+        email: formData.email,
+        idNumber: formData.idNumber,
+        location: formData.location,
+      },
+      category: formData.category || "General",
+      description: formData.description,
+      status: "Open",
+      priority: "Normal",
+      createdAt: new Date().toISOString(),
+      assignedPrimary: null,
+      assignedSecondary: null,
+      activityLog: [
+        {
+          action: "Ticket Created",
+          by: formData.staffNumber,
+          comment: "Ticket logged by end user",
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    };
 
-    navigate("/ticket-success");
+    // 🔍 For now (until backend)
+    saveTicket(newTicket);
+
+    // ✅ PASS TICKET NUMBER TO SUCCESS PAGE
+    navigate("/ticket-success", {
+      state: {
+        ticketNumber: newTicket.id,
+      },
+    });
   };
 
   return (
@@ -77,6 +115,14 @@ const SubmitTicket = () => {
               name="phone"
               placeholder="Phone Number *"
               value={formData.phone}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="location"
+              placeholder="Building, Floor, Room *"
+              value={formData.location}
               onChange={handleChange}
             />
 
@@ -119,7 +165,7 @@ const SubmitTicket = () => {
               rows="5"
               value={formData.description}
               onChange={handleChange}
-            ></textarea>
+            />
 
             <input type="file" name="attachment" onChange={handleChange} />
           </div>

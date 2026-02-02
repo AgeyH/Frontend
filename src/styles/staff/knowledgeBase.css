@@ -6,9 +6,11 @@
 }
 
 .kb-page {
-  padding: 24px;
+  padding: 1.5rem;
   background: #f4f6f8;
   min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
 }
 
 .kb-page h2 {
@@ -59,4 +61,11 @@
 
 .kb-empty {
   color: #9ca3af;
+}
+
+.staff-page {
+  /* margin-left: 240px; sidebar width */
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
 }

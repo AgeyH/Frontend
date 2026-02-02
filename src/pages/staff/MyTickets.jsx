@@ -1,34 +1,42 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/staff/myTickets.css";
 import { shouldEscalate, getRemainingTime } from "../../utils/sla";
-import { useEffect, useState } from "react";
+import { useStaff } from "../../context/StaffContext";
 
 const MyTickets = () => {
+  const navigate = useNavigate();
+  const { activeTicketId, setActiveTicketId } = useStaff();
   const [now, setNow] = useState(Date.now());
 
   const [tickets, setTickets] = useState([
     {
-      id: 1,
+      id: "TCK-1001",
       title: "Email not working",
       category: "Email",
-      status: "Open",
-      priority: "High",
+      status: "In Progress",
+      priority: "Normal",
       createdAt: "2026-01-26T08:00:00",
       slaHours: 4,
       escalated: false,
+      assignedPrimary: "You",
+      assignedSecondary: null,
     },
     {
-      id: 2,
+      id: "TCK-1002",
       title: "Printer offline",
       category: "Hardware",
-      status: "In Progress",
-      priority: "Medium",
+      status: "Open",
+      priority: "Normal",
       createdAt: "2026-01-26T06:00:00",
       slaHours: 8,
-      escalated: true,
+      escalated: false,
+      assignedPrimary: "You",
+      assignedSecondary: null,
     },
   ]);
 
+  // Live SLA timer
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(Date.now());
@@ -36,9 +44,10 @@ const MyTickets = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Auto escalation
   useEffect(() => {
-    setTickets((prevTickets) =>
-      prevTickets.map((ticket) => {
+    setTickets((prev) =>
+      prev.map((ticket) => {
         if (
           !ticket.escalated &&
           shouldEscalate(ticket.createdAt, ticket.slaHours, now)
@@ -56,20 +65,27 @@ const MyTickets = () => {
 
       <div className="tickets-list">
         {tickets.map((ticket) => {
-          const sla = getRemainingTime(ticket.createdAt, ticket.slaHours, now); // SLA calculation
-          const isEscalated =
-            ticket.escalated ||
-            shouldEscalate(ticket.createdAt, ticket.slaHours);
+          const sla = getRemainingTime(ticket.createdAt, ticket.slaHours, now);
+          const isLocked = activeTicketId && activeTicketId !== ticket.id;
 
           return (
-            <Link
+            <div
               key={ticket.id}
-              to={`/staff/tickets/${ticket.id}`}
-              className="ticket-card"
+              className={`ticket-card ${isLocked ? "locked" : ""}`}
+              onClick={() => {
+                if (isLocked) {
+                  alert(
+                    "You already have an active ticket. Pend or resolve it before opening another.",
+                  );
+                  return;
+                }
+                setActiveTicketId(ticket.id);
+                navigate(`/staff/tickets/${ticket.id}`);
+              }}
             >
               <h3>
                 {ticket.title}
-                {isEscalated && (
+                {ticket.escalated && (
                   <span className="escalation-badge">Escalated</span>
                 )}
               </h3>
@@ -93,28 +109,10 @@ const MyTickets = () => {
                 <strong>Priority:</strong> {ticket.priority}
               </p>
 
-              {/* SLA Display */}
               <p className={`sla ${sla.state}`}>
                 <strong>SLA:</strong> {sla.label}
               </p>
-
-              {/* Manual Escalation */}
-              {!isEscalated && (
-                <button
-                  className="escalate-btn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setTickets((prev) =>
-                      prev.map((t) =>
-                        t.id === ticket.id ? { ...t, escalated: true } : t,
-                      ),
-                    );
-                  }}
-                >
-                  Escalate Ticket
-                </button>
-              )}
-            </Link>
+            </div>
           );
         })}
       </div>

@@ -5,9 +5,10 @@
   margin-left: 240px;
 }
 .staff-metrics {
-  padding: 24px;
-  background: #f4f6f8;
+  padding: 1.5rem;
   min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
 }
 
 .staff-metrics h2 {
@@ -91,4 +92,10 @@
 .sla.danger {
   background: #fdecea;
   color: #c62828;
+}
+.staff-page {
+  margin-left: 240px; /* sidebar width */
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
 }

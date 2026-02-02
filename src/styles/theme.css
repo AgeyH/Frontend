@@ -1,6 +1,27 @@
 :root {
-  --color-primary: #873e23; /* Brown */
-  --color-accent: #e28743; /* Accent (orangish-brown per spec) */
-  --color-white: #ffffff; /* White*/
-  --color-dark: #0f172a; /* Blackish */
+  /* Brand */
+  --primary: #0f172a; /* Dark blue */
+  --secondary: #1e293b;
+  --accent: #e28743;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #eab308;
+  --danger: #dc2626;
+  --info: #2563eb;
+
+  /* Backgrounds */
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: #0f172a;
+
+  /* Text */
+  --text-main: #0f172a;
+  --text-muted: #08172b;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border-light: #e5e7eb;
+
+  --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
 }

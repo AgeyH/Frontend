@@ -24,6 +24,25 @@ const Welcome = () => {
         <button className="btn secondary" onClick={() => navigate("/login")}>
           IT Staff / Admin Login
         </button>
+        <br />
+        <h3>Track Your Ticket</h3>
+        <input
+          type="text"
+          placeholder="Ticket Number"
+          className="track-input"
+        />
+
+        <input
+          type="text"
+          placeholder="Your Identifier (Email / ID)"
+          className="track-input"
+        />
+
+        <button className="btn primary">Track Ticket</button>
+        <div className="">
+          <p>Email: helpdesk@company.com</p>
+          <p>Phone: +254 700 000 000</p>
+        </div>
       </main>
 
       <footer className="welcome-footer">

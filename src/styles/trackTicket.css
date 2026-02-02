@@ -1,0 +1,40 @@
+.track-ticket-page {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.track-card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.track-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+.track-card button {
+  margin-top: 10px;
+}
+
+.ticket-result {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-left: 4px solid var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.error-text {
+  color: #d9534f;
+  margin-top: 1rem;
+}
+
+.ticket-meta {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

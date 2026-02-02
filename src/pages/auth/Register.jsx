@@ -9,7 +9,7 @@ const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    department: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -61,12 +61,12 @@ const Register = () => {
           required
         />
 
-        <label>Department</label>
+        <label>Phone Number</label>
         <input
-          name="department"
-          placeholder="e.g. ICT, Support"
+          type="tel"
+          name="phone"
+          placeholder="Enter your Phone Number *"
           onChange={handleChange}
-          required
         />
 
         <label>Password</label>

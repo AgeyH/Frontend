@@ -1,14 +1,8 @@
-/* Leave space for sidebar */
-.staff-page,
-.staff-dashboard,
-.ticket-details {
-  margin-left: 240px;
-}
-
 .staff-page {
   padding: 1.5rem;
-  background-color: #f8fafc;
   min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
 }
 
 .staff-page h1 {

@@ -1,16 +1,9 @@
-/* Leave space for sidebar */
-.staff-page,
-.staff-dashboard,
-.ticket-details {
-  margin-left: 240px;
-}
-
 /* Page container */
 .staff-dashboard {
   padding: 24px;
-  background-color: #f4f6f8; /* LIGHT background */
+  background-color: var(--bg-main); /* LIGHT background */
   min-height: 100vh;
-  color: #1f2933; /* default readable text */
+  color: var(--text-main); /* default readable text */
 }
 
 /* Header */
@@ -63,7 +56,7 @@
   border-left: 6px solid #2196f3;
 }
 
-.stat-card.progress {
+.stat-card.pending {
   border-left: 6px solid #ff9800;
 }
 
@@ -125,4 +118,35 @@
 .action-btn.secondary {
   background: #f44336;
   color: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.stat-card p {
+  color: #64748b;
 }

@@ -4,7 +4,7 @@ import "../../styles/staff/dashboard.css";
 const StaffDashboard = () => {
   const stats = [
     { label: "Open Tickets", count: 5, type: "open" },
-    { label: "In Progress", count: 3, type: "progress" },
+    { label: "Pending", count: 3, type: "pending" },
     { label: "Resolved", count: 12, type: "resolved" },
     { label: "Escalated", count: 1, type: "escalated" },
     { label: "Overdue", count: 2, type: "overdue" },

@@ -1,12 +1,16 @@
+import Sidebar from "../components/layout/Sidebar";
 import { Outlet } from "react-router-dom";
-import StaffNav from "../components/staff/StaffNav";
+import "./Layout.css";
+import { StaffProvider } from "../context/StaffContext";
 
 const StaffLayout = () => {
   return (
-    <div className="staff-layout">
-      <StaffNav />
-      <main className="staff-page">
-        <Outlet />
+    <div className="layout">
+      <Sidebar />
+      <main className="content">
+        <StaffProvider>
+          <Outlet />
+        </StaffProvider>
       </main>
     </div>
   );

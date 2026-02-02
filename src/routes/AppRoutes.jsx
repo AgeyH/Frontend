@@ -10,6 +10,7 @@ import DirectorLayout from "../layouts/DirectorLayout";
 import Welcome from "../pages/public/Welcome";
 import SubmitTicket from "../pages/public/SubmitTicket";
 import TicketSuccess from "../pages/public/TicketSuccess";
+import TrackTicket from "../pages/public/TrackTicket";
 
 /* Auth pages */
 import Login from "../pages/auth/Login";
@@ -18,13 +19,12 @@ import Register from "../pages/auth/Register";
 /* Staff pages */
 import StaffDashboard from "../pages/staff/Dashboard";
 import MyTickets from "../pages/staff/MyTickets";
-import AllTickets from "../pages/staff/AllTickets";
 import KnowledgeBase from "../pages/staff/KnowledgeBase";
-import Reports from "../pages/staff/Reports";
 import TicketDetails from "../pages/staff/TicketDetails";
 import Tickets from "../pages/staff/Tickets";
 import Notifications from "../pages/staff/Notifications";
 import Metrics from "../pages/staff/Metrics";
+import Profile from "../pages/staff/Profile";
 
 /* Admin pages */
 import AdminDashboard from "../pages/admin/Dashboard";
@@ -46,19 +46,19 @@ const AppRoutes = () => {
         <Route path="/ticket-success" element={<TicketSuccess />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/track-ticket" element={<TrackTicket />} />
       </Route>
 
       {/* STAFF */}
       <Route path="/staff" element={<StaffLayout />}>
         <Route path="dashboard" element={<StaffDashboard />} />
         <Route path="my-tickets" element={<MyTickets />} />
-        <Route path="all-tickets" element={<AllTickets />} />
         <Route path="knowledge-base" element={<KnowledgeBase />} />
-        <Route path="reports" element={<Reports />} />
         <Route path="tickets/:id" element={<TicketDetails />} />
         <Route path="tickets" element={<Tickets />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="metrics" element={<Metrics />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
 
       {/* ADMIN */}

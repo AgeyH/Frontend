@@ -1,0 +1,37 @@
+.timeline {
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.content {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.action {
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.comment {
+  margin-top: 0.5rem;
+}

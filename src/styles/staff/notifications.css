@@ -65,3 +65,10 @@
 .notification.danger {
   background: #fef2f2;
 }
+
+.staff-page {
+  margin-left: 240px; /* sidebar width */
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}

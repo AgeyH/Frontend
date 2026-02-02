@@ -1,13 +1,12 @@
+import Sidebar from "../components/layout/Sidebar";
 import { Outlet } from "react-router-dom";
+import "./Layout.css";
 
 const DirectorLayout = () => {
   return (
-    <div style={{ display: "flex" }}>
-      <aside>
-        <p>Director Sidebar</p>
-      </aside>
-
-      <main>
+    <div className="layout">
+      <Sidebar />
+      <main className="content">
         <Outlet />
       </main>
     </div>

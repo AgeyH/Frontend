@@ -1,0 +1,17 @@
+.sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.sidebar a {
+  color: var(--sidebar-text);
+}
+
+.sidebar a:hover {
+  background: var(--sidebar-hover);
+}
+
+.sidebar a.active {
+  background: var(--bg-main);
+  font-weight: 600;
+}
